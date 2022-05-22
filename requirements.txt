@@ -1,0 +1,15 @@
+Pyrogram==1.2.9
+tgcrypto
+requests
+aiofiles>=0.6.0
+aiohttp[speedups]>=3.7.3
+tracemoepy
+lottie
+bs4
+motor
+dnspython
+jikanpy
+natsort
+apscheduler
+lxml
+html5lib
