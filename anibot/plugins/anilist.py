@@ -79,9 +79,9 @@ async def anime_cmd(client: Client, message: Message, mdata: dict):
         return await k.delete()
     buttons = get_btns("ANIME", result=result, user=user, auth=auth)
     if await (SFW_GRPS.find_one({"id": gid})) and result[2].pop()=="True":
-        await client.send_photo(gid, no_pic[random.randint(0, 4)], caption="This anime is marked 18+ and not allowed in this group")
+        await client.reply_photo(gid, no_pic[random.randint(0, 4)], caption="This anime is marked 18+ and not allowed in this group")
         return
-    await client.send_photo(gid, title_img, caption=finals_, reply_markup=buttons)
+    await client.reply_photo(gid, title_img, caption=finals_, reply_markup=buttons)
     if title_img not in PIC_LS:
         PIC_LS.append(title_img)
 
@@ -904,7 +904,7 @@ async def additional_info_btn(client: Client, cq: CallbackQuery, cdata: dict):
         btnlist = []
         if cq.message.chat.type == "private":
             btnlist.append(InlineKeyboardButton(text="Main Menu", callback_data=f'fitur {query}'))
-        btnlist.append(InlineKeyboardButton(text="Lapor", url=f"https://t.me/otakuindonew")),btnlist.append(InlineKeyboardButton(text="⌧ Hapus", callback_data=f'neko_delete, {user}'))
+        btnlist.append(InlineKeyboardButton(text="Lapor", url=f"https://t.me/otakuindonew")),btnlist.append(InlineKeyboardButton(text="Tutup", callback_data=f'close_data'))
         button.append(btnlist) 
     if kek=='char':
         btndata = rjsdata[2]
