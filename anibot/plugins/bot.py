@@ -306,7 +306,7 @@ async def start_(client: anibot, message: Message, mdata: dict):
                 gidtitle = mdata['chat']['title']
             await GROUPS.insert_one({"id": gid, "grp": gidtitle})
             await clog("ANIBOT", f"Bot added to a new group\n\n{gidtitle}\nID: `{gid}`", "NEW_GROUP")
-        await client.send_message(gid, text="Bot seems online!!!")
+        await message.reply_text(text="Bot seems online!!!")
 
 @anibot.on_message(filters.command(['help', f'help{BOT_NAME}'], prefixes=trg))
 @control_user
@@ -319,8 +319,7 @@ async def help_(client: anibot, message: Message, mdata: dict):
     try:
         id_ = mdata['from_user']['id']
     except KeyError:
-        await client.send_message(
-            gid,
+        await message.reply_text(
             text="Click below button for bot help",
             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Help", url=f"https://t.me/{bot_us}/?start=help")]])
         )
@@ -329,9 +328,8 @@ async def help_(client: anibot, message: Message, mdata: dict):
     text='''**MENU BANTUAN BOT:**\n\nSilahkan Untuk pilih, daftar menu bantuan, yang kalian butuhkan.
 \nHarap untuk dibaca semua, agar memahami bot ini sepenuhnya.'''
     if id_ in OWNER:
-        await client.send_message(gid, text=text, reply_markup=buttons)
-        await client.send_message(
-            gid,
+        await message.reply_text(text=text, reply_markup=buttons)
+        await message.reply_text(
             text="""Owners / Sudos can also use
 
 - __/term__ `to run a cmd in terminal`
@@ -343,10 +341,9 @@ Apart from above shown cmds"""
         )
     else:
         if gid==id_:
-            await client.send_message(gid, text=text, reply_markup=buttons)
+            await message.reply_text(text=text, reply_markup=buttons)
         else:
             await client.send_message(
-                gid,
                 text="Click below button for bot help",
                 reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Help", url=f"https://t.me/{bot_us}/?start=help")]])
             )
