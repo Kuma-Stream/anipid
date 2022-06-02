@@ -274,8 +274,8 @@ async def start_(client: anibot, message: Message, mdata: dict):
                 return
             if deep_cmd.split("_")[0]=="des":
                 pic, result = await get_additional_info(deep_cmd.split("_")[2], deep_cmd.split("_")[3], deep_cmd.split("_")[1])
-                await client.send_photo(user, pic)
-                await client.send_message(user, result.replace("~!", "").replace("!~", ""))
+                await message.reply_photo(pic)
+                await message.reply_text(result.replace("~!", "").replace("!~", ""))
                 return
             if deep_cmd.split("_")[0]=="anime":
                 auth = False
@@ -288,7 +288,7 @@ async def start_(client: anibot, message: Message, mdata: dict):
                 return
             if deep_cmd.split("_")[0]=="anirec":
                 result = await get_recommendations(deep_cmd.split("_")[1])
-                await message.reply_photo(result, disable_web_page_preview=True)
+                await message.reply_text(result, disable_web_page_preview=True)
                 return
             if deep_cmd.split("_", 1)[0]=="code":
                 if not os.environ.get('ANILIST_REDIRECT_URL'):
