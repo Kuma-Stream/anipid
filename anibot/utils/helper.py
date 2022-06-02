@@ -258,7 +258,7 @@ def make_it_rw(time_stamp):
 
 async def clog(name: str, text: str, tag: str):
     log = f"#{name.upper()}  #{tag.upper()}\n\n{text}"
-    await message.reply_text(chat_id=LOG_CHANNEL_ID, text=log)
+    await anibot.send_message(chat_id=LOG_CHANNEL_ID, text=log)
 
 
 def get_btns(media, user: int, result: list, lsqry: str = None, lspage: int = None, auth: bool = False, sfw: str = "False"):

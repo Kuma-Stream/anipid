@@ -343,7 +343,7 @@ Apart from above shown cmds"""
         if gid==id_:
             await message.reply_text(text=text, reply_markup=buttons)
         else:
-            await message.reply_text(
+            await client.send_message(
                 text="Click below button for bot help",
                 reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Help", url=f"https://t.me/{bot_us}/?start=help")]])
             )
@@ -435,7 +435,7 @@ async def pong_(client: anibot, message: Message, mdata: dict):
 @control_user
 async def feed_(client: anibot, message: Message, mdata: dict):
     owner = (await client.get_users(OWNER[0])).username
-    await message.reply_text(f"Silahkan lapor ke @{owner} atau join @otakuindonew")
+    await client.send_message(mdata['chat']['id'], f"Silahkan lapor ke @{owner} atau join @otakuindonew")
 
 ###### credits to @NotThatMF on tg since he gave me the code for it ######
 

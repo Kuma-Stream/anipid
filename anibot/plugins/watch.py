@@ -28,7 +28,7 @@ async def get_watch_order(client: anibot, message: Message, mdata: dict):
     msg = f"Menemukan anime terkait untuk kueri {x[1]}"
     buttons = []
     if data == []:
-        await client.send_message(gid, 'Tidak ada judul yang dapat ditemukan..')
+        await message.reply_text('Tidak ada judul yang dapat ditemukan..')
         return
     for i in data:
         buttons.append([InlineKeyboardButton(str(i[1]), callback_data=f"watch_{i[0]}_{x[1]}_0_{user}")])
