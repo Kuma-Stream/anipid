@@ -79,9 +79,9 @@ async def anime_cmd(client: Client, message: Message, mdata: dict):
         return await k.delete()
     buttons = get_btns("ANIME", result=result, user=user, auth=auth)
     if await (SFW_GRPS.find_one({"id": gid})) and result[2].pop()=="True":
-        await message.reply_photo(no_pic[random.randint(0, 4)], caption="This anime is marked 18+ and not allowed in this group")
+        await message.reply_photo(user, no_pic[random.randint(0, 4)], caption="This anime is marked 18+ and not allowed in this group")
         return
-    await message.reply_photo(title_img, caption=finals_, reply_markup=buttons)
+    await message.reply_photo(user, title_img, caption=finals_, reply_markup=buttons)
     if title_img not in PIC_LS:
         PIC_LS.append(title_img)
 
@@ -257,7 +257,7 @@ async def top_tags_cmd(client: Client, message: Message, mdata: dict):
     if await (SFW_GRPS.find_one({"id": gid})) and str(result[0][1])=="True":
         return await message.reply_text('No nsfw stuff allowed in this group!!!')
     msg, buttons = result
-    await message.reply_text(gid, msg[0], disable_web_page_preview=True, reply_markup=buttons if buttons!='' else None)
+    await client.send_message(gid, msg[0], disable_web_page_preview=True, reply_markup=buttons if buttons!='' else None)
 
 
 @anibot.on_message(filters.command(["airing", f"airing{BOT_NAME}"], prefixes=trg))
@@ -489,7 +489,7 @@ async def browse_cmd(client: Client, message: Message, mdata: dict):
         InlineKeyboardButton(up, callback_data=f'browse_{up.lower()}_{user}'),
     ]]
     msg = await browse_('trending')
-    await message.reply_text(gid, msg, reply_markup=InlineKeyboardMarkup(btns))
+    await client.send_message(gid, msg, reply_markup=InlineKeyboardMarkup(btns))
 
 
 @anibot.on_message(filters.command(["gettags", f"gettags{BOT_NAME}", "getgenres", f"getgenres{BOT_NAME}"], prefixes=trg))
