@@ -17,7 +17,7 @@ async def get_schuled(client: anibot, message: Message, mdata: dict):
     find_gc = await DC.find_one({'_id': gid})
     if find_gc is not None and 'schedule' in find_gc['cmd_list'].split():
         return
-    x = await client.send_message(gid, "<code>Mengambil Informasi yang tersedia...</code>")
+    x = await message.reply_text("<code>Mengambil Informasi yang tersedia...</code>")
     user = mdata['from_user']['id']
     msg = await get_scheduled()
     buttons = get_btns("SCHEDULED", result=[msg[1]], user=user)
