@@ -79,9 +79,9 @@ async def anime_cmd(client: Client, message: Message, mdata: dict):
         return await k.delete()
     buttons = get_btns("ANIME", result=result, user=user, auth=auth)
     if await (SFW_GRPS.find_one({"id": gid})) and result[2].pop()=="True":
-        await client.reply_photo(gid, no_pic[random.randint(0, 4)], caption="This anime is marked 18+ and not allowed in this group")
+        await client.send_photo(gid, no_pic[random.randint(0, 4)], caption="This anime is marked 18+ and not allowed in this group")
         return
-    await client.reply_photo(gid, title_img, caption=finals_, reply_markup=buttons)
+    await client.send_photo(gid, title_img, caption=finals_, reply_markup=buttons)
     if title_img not in PIC_LS:
         PIC_LS.append(title_img)
 
