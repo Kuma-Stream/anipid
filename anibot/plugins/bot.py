@@ -284,11 +284,11 @@ async def start_(client: anibot, message: Message, mdata: dict):
                 result = await get_anime({"id": int(deep_cmd.split("_")[1])}, user=user, auth=auth)
                 pic, msg = result[0], result[1]
                 buttons = get_btns("ANIME", result=result, user=user, auth=auth)
-                await client.reply_photo(pic, caption=msg, reply_markup=buttons)
+                await client.reply_photo(user, pic, caption=msg, reply_markup=buttons)
                 return
             if deep_cmd.split("_")[0]=="anirec":
                 result = await get_recommendations(deep_cmd.split("_")[1])
-                await client.reply_message(result, disable_web_page_preview=True)
+                await client.reply_message(user, result, disable_web_page_preview=True)
                 return
             if deep_cmd.split("_", 1)[0]=="code":
                 if not os.environ.get('ANILIST_REDIRECT_URL'):
