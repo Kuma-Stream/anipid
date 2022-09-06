@@ -897,15 +897,14 @@ async def additional_info_btn(client: Client, cq: CallbackQuery, cdata: dict):
             result += "\n\nUntuk lebih lanjutnya, silahkan klik tombol dibawah ini"
             button.append([InlineKeyboardButton(text="More Info", url=f"https://t.me/{bot}/?start=des_{ctgry}_{query}_{kek}"),
             ])
-            
-    add_ = ""
-    user = q.pop()
     if kek=='desc':
         btnlist = []
         if cq.message.chat.type == "private":
             btnlist.append(InlineKeyboardButton(text="Main Menu", callback_data=f'fitur {query}'))
         btnlist.append(InlineKeyboardButton(text="Lapor", url=f"https://t.me/otakuindonew")),btnlist.append(InlineKeyboardButton(text="Tutup", callback_data=f'close_data'))
-        button.append(btnlist) 
+        button.append(btnlist)
+    add_ = ""
+    user = q.pop()
     if kek=='char':
         btndata = rjsdata[2]
         if btndata['lastPage']!=1:
@@ -925,10 +924,10 @@ async def additional_info_btn(client: Client, cq: CallbackQuery, cdata: dict):
         else f"page_ANIME{lsqry}{lspg}_{q[5]}_{user}" if ctgry=="ANI"
         else f"page_CHARACTER{lsqry}{lspg}_{q[5]}_{user}"
     )
-    
-
-    button.append([InlineKeyboardButton(text="↩ Back", callback_data=cbd)])
+    button.append([InlineKeyboardButton(text="Back", callback_data=cbd)])
     await cq.edit_message_media(InputMediaPhoto(pic, caption=msg), reply_markup=InlineKeyboardMarkup(button))
+
+
 
 
 @anibot.on_callback_query(filters.regex(pattern=r"lsc_(.*)"))
