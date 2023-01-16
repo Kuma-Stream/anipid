@@ -1,4 +1,4 @@
-Pyrogram==2.0.97
+Pyrogram
 tgcrypto
 requests
 aiofiles>=0.6.0
