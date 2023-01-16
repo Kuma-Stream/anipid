@@ -274,7 +274,7 @@ def get_btns(media, user: int, result: list, lsqry: str = None, lspage: int = No
     pg = f"_{lspage}" if lspage is not None else ""
     if media == "ANIME" and sfw == "False":
         buttons.append([
-            InlineKeyboardButton(text="Menu", callback_data=f"desc_{result[2][0]}_ANI{qry}{pg}_{str(auth)}_{user}"),
+            InlineKeyboardButton(text="Deskripsi", callback_data=f"desc_{result[2][0]}_ANI{qry}{pg}_{str(auth)}_{user}"),
             InlineKeyboardButton(text="Karakter", callback_data=f"char_{result[2][0]}_ANI{qry}{pg}_{str(auth)}_1_{user}"),
             InlineKeyboardButton(text="Series", callback_data=f"ls_{result[2][0]}_ANI{qry}{pg}_{str(auth)}_{user}"),
         ])
@@ -302,7 +302,7 @@ def get_btns(media, user: int, result: list, lsqry: str = None, lspage: int = No
         # Tombol Download Guest.
     else:
         if media=="ANIME" and sfw == "False":
-            buttons.append([InlineKeyboardButton("Media", switch_inline_query_current_chat=name)])
+            buttons.append([InlineKeyboardButton("Media", callback_data=f"menu {result[2][0]}")])
             
     if len(result)>3:
         if result[3] == "None":
@@ -340,7 +340,7 @@ def get_auth_btns(media, user, data, name, lsqry: str = None, lspage: int = None
     else:
         btn.append(InlineKeyboardButton(text="⨭ Ke Fav" if data[3] is not True else "⨪ dari Fav", callback_data=f"fav_{media}_{data[0]}{qry}{pg}_{user}"))
         if media=="ANIME":
-            btn.append(InlineKeyboardButton("Media", switch_inline_query_current_chat=name))
+            btn.append(InlineKeyboardButton("Media", callback_data=f"menu {result[2][0]}"))
             
         btn.append(InlineKeyboardButton(
             text="⨮ Ke List" if data[1] is False else "Ganti List",
