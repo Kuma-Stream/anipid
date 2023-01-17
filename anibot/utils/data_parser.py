@@ -1431,7 +1431,7 @@ async def check_if_adult(id_):
 
 #### RIP Jikanpy ####
 
-
+dtz = pytz.timezone("Asia/Jakarta")
 async def get_scheduled(day_id: int = 0):
 	# variables = {'page': 1, 'gt': timestamp_today(), 'lt': timestamp_today(1)}
 	that_day = timestamp_today(day_id)
@@ -1442,7 +1442,7 @@ async def get_scheduled(day_id: int = 0):
 	schedule_data =  result["data"]['Page'].get("airingSchedules")
 	if not schedule_data:
 		return f"No more data"
-	msg = f"**Schedule for {datetime.fromtimestamp(that_day).strftime('%A')}**\n`{datetime.fromtimestamp(that_day).strftime('%d %B, %Y')}`\n\n"
+	msg = f"Schedule for {datetime.fromtimestamp(that_day, tz=dtz).strftime('%A')}\n{datetime.fromtimestamp(that_day, tz=dtz).strftime('%d %B, %Y')}\n\n"
 	for anime_data in schedule_data:
 		if anime_data.get("media", {}).get("countryOfOrigin") != "JP":
 			continue
@@ -1450,7 +1450,7 @@ async def get_scheduled(day_id: int = 0):
 			msg += "● "
 		else:
 			msg += "○ "
-		msg += f"`{datetime.fromtimestamp(anime_data['airingAt']).strftime('%H:%M')}` "
+		msg += f"{datetime.fromtimestamp(anime_data['airingAt'], tz=dtz).strftime('%H:%M')} "
 		anime_title = anime_data.get('media', {}).get("title", {}).get('romaji')
 		anime_id = anime_data.get('media', {}).get("id")
 		deeplink = f"https://t.me/{BOT_NAME.replace('@', '')}/?start=anime_{anime_id}"
