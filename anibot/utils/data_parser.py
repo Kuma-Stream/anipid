@@ -1432,7 +1432,7 @@ async def check_if_adult(id_):
 #### RIP Jikanpy ####
 
 dtz = pytz.timezone("Asia/Jakarta")
-async def get_scheduled(day_id: int = 0,  disable_web_page_preview=True):
+async def get_scheduled(day_id: int = 0):
 	# variables = {'page': 1, 'gt': timestamp_today(), 'lt': timestamp_today(1)}
 	that_day = timestamp_today(day_id)
 	day_inc = timestamp_today(day_id + 1)
