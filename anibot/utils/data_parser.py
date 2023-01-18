@@ -1432,12 +1432,12 @@ async def check_if_adult(id_):
 #### RIP Jikanpy ####
 
 dtz = pytz.timezone("Asia/Jakarta")
-async def get_scheduled(day_id: int = 0):
+async def get_scheduled(day_id: int = 0,  disable_web_page_preview=True):
 	# variables = {'page': 1, 'gt': timestamp_today(), 'lt': timestamp_today(1)}
 	that_day = timestamp_today(day_id)
 	day_inc = timestamp_today(day_id + 1)
 	variables = {'page': 1, 'gt': that_day, 'lt': day_inc}
-	result = await return_json_senpai(SCHEDULE_QUERY, variables, auth=False, user=None, disable_web_page_preview=True)
+	result = await return_json_senpai(SCHEDULE_QUERY, variables, auth=False, user=None)
 	today = datetime.now(pytz.timezone("Asia/Jakarta"))
 	schedule_data =  result["data"]['Page'].get("airingSchedules")
 	if not schedule_data:
@@ -1459,6 +1459,7 @@ async def get_scheduled(day_id: int = 0):
 		else:
 			msg += f"[{anime_title}]({deeplink})\n"
 	return msg
+  
 
 ####     END      ####
 
