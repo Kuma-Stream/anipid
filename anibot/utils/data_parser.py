@@ -1442,7 +1442,7 @@ async def get_scheduled(day_id: int = 0):
 	schedule_data =  result["data"]['Page'].get("airingSchedules")
 	if not schedule_data:
 		return f"No more data"
-	msg = f"Schedule for {datetime.fromtimestamp(that_day, tz=dtz).strftime('%A')}\n{datetime.fromtimestamp(that_day, tz=dtz).strftime('%d %B, %Y')}\n\n"
+	msg = f"Schedule for {datetime.fromtimestamp(that_day, tz=dtz).strftime('%A')}\n{datetime.fromtimestamp(that_day, tz=dtz).strftime('%d %B, %Y')} - Waktu Berdasarkan WIB (Jakarta)\n\n"
 	for anime_data in schedule_data:
 		if anime_data.get("media", {}).get("countryOfOrigin") != "JP":
 			continue
