@@ -1,6 +1,6 @@
-import pytz
 import requests
 import time
+import pytz
 import os
 from bs4 import BeautifulSoup
 from .db import get_collection
@@ -8,7 +8,6 @@ from .google_trans_new import google_translator
 from .helper import cflag, make_it_rw, pos_no, return_json_senpai, season_, timestamp_today
 from .. import BOT_NAME
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-                                          
 from datetime import datetime
 
 tr = google_translator()
@@ -30,11 +29,11 @@ async def get_ui_text(case):
 
 #### Anilist part ####
 
-ANIME_TEMPLATE = """{name}
+ANIME_TEMPLATE = """{c_flag} {name} 
 ─────── ∘°❉°∘ ───────
-**ID | MAL ID:** `{idm}` | <a href="https://myanimelist.net/anime/{idmal}">{idmal}</a>
-{bl}**{psrc}:** [{c_flag}] - `{source}`
-{bl}**{ptype}:** `{formats}`{avscd}{dura}{user_data}
+**{avscd}** `{idm}` | <a href="https://myanimelist.net/anime/{idmal}">{MAL}</a>
+{bl}**{psrc}:** `{source}`
+{bl}**{ptype}:** `{formats}`{dura}{user_data}
 {status_air}{gnrs_}{tags_}
 ──────────────────
 ▷ **{trailer_link}** | ⌭ <a href="https://t.me/{bot}?start=anirec_{idm}">**Anime Serupa**</a>
@@ -674,6 +673,7 @@ query ($id: Int, $page: Int) {
   }
 }
 '''
+
 SCHEDULE_QUERY = """
 query ($page: Int, $gt: Int, $lt: Int) {
   Page(page: $page, perPage: 100) {
@@ -1056,6 +1056,7 @@ async def get_anime(vars_, auth: bool = False, user: int = None, cid: int = None
             sql_id = i["node"]["id"]
             break
     additional = f"{prql}{sql}"
+    surl = f"https://t.me/{bot}/?start=des_ANI_{idm}_desc"
     dura = (
         f"\n{bl}**{text[3]}:** `{duration} min/ep`"
         if duration is not None
@@ -1123,7 +1124,7 @@ async def get_anilist(qdb, page, auth: bool = False, user: int = None, cid: int 
     tags = []
     for i in data['tags']:
         tags.append(i["name"])
-    tags_ = f"\n{bl}**{text[8]}:** `{', '.join(tags[:5])}`" if tags != [] else ""
+    tags_ = f"\n{bl}**{text[8]}:** `{', '.join(tags[:2])}`" if tags != [] else ""
     in_ls = False
     in_ls_id = ""
     user_data = ""
@@ -1177,6 +1178,9 @@ async def get_anilist(qdb, page, auth: bool = False, user: int = None, cid: int 
         status_air = f"{bl}**{text[6]}:** `{status}`\n{bl}**{text[11]}:** `{air_on}`"
     if data["trailer"] and data["trailer"]["site"] == "youtube":
         trailer_link = f"<a href='https://youtu.be/{data['trailer']['id']}'>Trailer</a>"
+    url = data.get("siteUrl")
+    title_img = f"https://img.anili.st/media/{idm}"
+    surl = f"https://t.me/{bot}/?start=des_ANI_{idm}_desc"
     total = result["data"]["Page"]["pageInfo"]["total"]
     try:
         finals_ = ANIME_TEMPLATE.format(**locals())
@@ -1426,7 +1430,7 @@ async def check_if_adult(id_):
 
 #### RIP Jikanpy ####
 
-dtz = pytz.timezone("Asia/Jakarta")
+
 async def get_scheduled(day_id: int = 0):
 	# variables = {'page': 1, 'gt': timestamp_today(), 'lt': timestamp_today(1)}
 	that_day = timestamp_today(day_id)
@@ -1437,15 +1441,15 @@ async def get_scheduled(day_id: int = 0):
 	schedule_data =  result["data"]['Page'].get("airingSchedules")
 	if not schedule_data:
 		return f"No more data"
-	msg = f"Schedule for {datetime.fromtimestamp(that_day, tz=dtz).strftime('%A')}\n{datetime.fromtimestamp(that_day, tz=dtz).strftime('%d %B, %Y')} - Waktu Berdasarkan WIB (Jakarta)\n\n"
+	msg = f"**Schedule for {datetime.fromtimestamp(that_day).strftime('%A')}**\n`{datetime.fromtimestamp(that_day).strftime('%d %B, %Y')}`\n\n"
 	for anime_data in schedule_data:
 		if anime_data.get("media", {}).get("countryOfOrigin") != "JP":
 			continue
 		if today.timestamp() > anime_data['airingAt']:
-			msg += "● "
+			msg += "✅ "
 		else:
 			msg += "○ "
-		msg += f"{datetime.fromtimestamp(anime_data['airingAt'], tz=dtz).strftime('%H:%M')} "
+		msg += f"`{datetime.fromtimestamp(anime_data['airingAt']).strftime('%H:%M')}` "
 		anime_title = anime_data.get('media', {}).get("title", {}).get('romaji')
 		anime_id = anime_data.get('media', {}).get("id")
 		deeplink = f"https://t.me/{BOT_NAME.replace('@', '')}/?start=anime_{anime_id}"
@@ -1454,7 +1458,6 @@ async def get_scheduled(day_id: int = 0):
 		else:
 			msg += f"[{anime_title}]({deeplink})\n"
 	return msg
-  
 
 ####     END      ####
 
