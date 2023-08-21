@@ -29,11 +29,11 @@ async def get_ui_text(case):
 
 #### Anilist part ####
 
-ANIME_TEMPLATE = """{c_flag} {name} 
+ANIME_TEMPLATE = """{name}
 ─────── ∘°❉°∘ ───────
-**{avscd}** `{idm}` | <a href="https://myanimelist.net/anime/{idmal}">{MAL}</a>
-{bl}**{psrc}:** `{source}`
-{bl}**{ptype}:** `{formats}`{dura}{user_data}
+**ID :** `{idm}` | <a href="https://myanimelist.net/anime/{idmal}">{MAL}</a>
+{bl}**{psrc}:** [{c_flag}] - `{source}`
+{bl}**{ptype}:** `{formats}`{avscd}{dura}{user_data}
 {status_air}{gnrs_}{tags_}
 ──────────────────
 ▷ **{trailer_link}** | ⌭ <a href="https://t.me/{bot}?start=anirec_{idm}">**Anime Serupa**</a>
@@ -854,7 +854,7 @@ async def get_top_animes(gnr: str, page, user):
         nsfw = True if gnr.lower() in nsls.lower() else False
     data = result["data"]["Page"]
     for i in data['media']:
-        msg += f"⚬ [{i['title']['romaji']}](http://t.me/ccgnimex_bot?start=anime_{i['id']})\n"
+        msg += f"⚬ [{i['title']['romaji']}](http://t.me/cipdbot?start=anime_{i['id']})\n"
     msg += f"\nTotal Halaman Tersedia: `{data['pageInfo']['total']}`\nKalian bisa juga menambahkan genre/tag, seperti `/top romance`."
     btn = []
     if int(page)==1:
@@ -1124,7 +1124,7 @@ async def get_anilist(qdb, page, auth: bool = False, user: int = None, cid: int 
     tags = []
     for i in data['tags']:
         tags.append(i["name"])
-    tags_ = f"\n{bl}**{text[8]}:** `{', '.join(tags[:2])}`" if tags != [] else ""
+    tags_ = f"\n{bl}**{text[8]}:** `{', '.join(tags[:5])}`" if tags != [] else ""
     in_ls = False
     in_ls_id = ""
     user_data = ""
