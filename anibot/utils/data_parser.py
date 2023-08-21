@@ -31,7 +31,7 @@ async def get_ui_text(case):
 
 ANIME_TEMPLATE = """{name}
 ─────── ∘°❉°∘ ───────
-**ID :** `{idm}` | <a href="https://myanimelist.net/anime/{idmal}">{MAL}</a>
+**ID | MAL ID:** `{idm}` | <a href="https://myanimelist.net/anime/{idmal}">{idmal}</a>
 {bl}**{psrc}:** [{c_flag}] - `{source}`
 {bl}**{ptype}:** `{formats}`{avscd}{dura}{user_data}
 {status_air}{gnrs_}{tags_}
