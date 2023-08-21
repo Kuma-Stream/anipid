@@ -889,7 +889,7 @@ async def additional_info_btn(client: Client, cq: CallbackQuery, cdata: dict):
     q = cdata['data'].split("_")
     kek, query, ctgry = q[0], q[1], q[2]
     info = (
-        "<b>Deskripsi</b>"
+        "<b>Sinopsis</b>"
         if kek == "desc"
         else "<b>Series List</b>"
         if kek == "ls"
@@ -923,7 +923,7 @@ async def additional_info_btn(client: Client, cq: CallbackQuery, cdata: dict):
         btnlist = []
         if cq.message.chat.type == "private":
             btnlist.append(InlineKeyboardButton(text="Main Menu", callback_data=f'fitur {query}'))
-        btnlist.append(InlineKeyboardButton(text="Lapor", url=f"https://t.me/otakuindonew")),btnlist.append(InlineKeyboardButton(text="Tutup", callback_data=f'close_data'))
+        btnlist.append(InlineKeyboardButton(text="Lapor", url=f"https://t.me/impidbot")),btnlist.append(InlineKeyboardButton(text="Tutup", callback_data=f'close_data'))
         button.append(btnlist)
     add_ = ""
     user = q.pop()
