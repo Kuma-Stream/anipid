@@ -854,7 +854,7 @@ async def get_top_animes(gnr: str, page, user):
         nsfw = True if gnr.lower() in nsls.lower() else False
     data = result["data"]["Page"]
     for i in data['media']:
-        msg += f"⚬ [{i['title']['romaji']}](https://t.me/{BOT_NAME.replace('@', '')}/?start=anime_{anime_id})\n"
+        msg += f"⚬ [{i['title']['romaji']}](http://t.me/cipdbot?start=anime_{anime_id})\n"
     msg += f"\nTotal Halaman Tersedia: `{data['pageInfo']['total']}`\nKalian bisa juga menambahkan genre/tag, seperti `/top romance`."
     btn = []
     if int(page)==1:
