@@ -37,8 +37,7 @@ ANIME_TEMPLATE = """{name}
 {bl}**{ptype}:** `{formats}`{avscd}{dura}{user_data}
 {status_air}{gnrs_}{tags_}
 ──────────────────
-▷ **{trailer_link}** | ⍯ <a href="{surl}">**Sinopsis**</a>
-〄 <a href="{url}">**Anilist**</a> | ⌭ <a href="https://t.me/{bot}?start=anirec_{idm}">**Anime Serupa**</a>
+▷ **{trailer_link}** | ⌭ <a href="https://t.me/{bot}?start=anirec_{idm}">**Anime Serupa**</a>
 ─────── ∘°❉°∘ ───────
 {additional}"""
 
@@ -1057,7 +1056,6 @@ async def get_anime(vars_, auth: bool = False, user: int = None, cid: int = None
             sql_id = i["node"]["id"]
             break
     additional = f"{prql}{sql}"
-    surl = f"https://t.me/{bot}/?start=des_ANI_{idm}_desc"
     dura = (
         f"\n{bl}**{text[3]}:** `{duration} min/ep`"
         if duration is not None
@@ -1179,9 +1177,6 @@ async def get_anilist(qdb, page, auth: bool = False, user: int = None, cid: int 
         status_air = f"{bl}**{text[6]}:** `{status}`\n{bl}**{text[11]}:** `{air_on}`"
     if data["trailer"] and data["trailer"]["site"] == "youtube":
         trailer_link = f"<a href='https://youtu.be/{data['trailer']['id']}'>Trailer</a>"
-    url = data.get("siteUrl")
-    title_img = f"https://img.anili.st/media/{idm}"
-    surl = f"https://t.me/{bot}/?start=des_ANI_{idm}_desc"
     total = result["data"]["Page"]["pageInfo"]["total"]
     try:
         finals_ = ANIME_TEMPLATE.format(**locals())
