@@ -57,19 +57,19 @@ Gunakan /wallpaper untuk mendapatkan file/gambar wallpaper anime secara random (
 
 Gunakan /waifu untuk mendapatkan gambar waifu (neko) secara random (API)
 
-Mendownload VIDEO/AUDIO dari Youtube.
+<b>Mendownload VIDEO/AUDIO dari Youtube.</b>
 
 Silahkan aktifkan bot @vid nya terlebih dahulu, lalu kembali kebot ini.
 
 Setelah itu, kalian ketik @vid "judul/nama"  yang ingin
 
-kalian download/streaming.
+kalian download/streaming. 
 
 lalu, klik video tersebut, nanti otomatis bot ini akan memprosesnya.
 
-Stream/Download External 
+<b> Stream/Download via browser </b>
 
-Saya sarankan gunakan bot ini @nimexLink_bot
+Saya sarankan gunakan bot ini @Kurupidbot
 
 fungsinya itu, untuk menconvert, file dokumen/video dari telegram,
 ke link yang bisa kalian download mengunakan browser maupun sejenisnya.
