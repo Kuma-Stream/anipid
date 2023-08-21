@@ -60,7 +60,7 @@ async def anime_cmd(client: Client, message: Message, mdata: dict):
     if find_gc is not None and 'anime' in find_gc['cmd_list'].split():
         return
     if len(text)==1:
-        k = await message.reply_text("Tolong beri judul untuk mencari anime\ncontoh: /anime Ao Haru Ride")
+        k = await message.reply_text("Judulnya mana bree \ncontoh: /anime Ao Haru Ride")
         await asyncio.sleep(5)
         return await k.delete()
     query = text[1]
@@ -79,7 +79,7 @@ async def anime_cmd(client: Client, message: Message, mdata: dict):
         return await k.delete()
     buttons = get_btns("ANIME", result=result, user=user, auth=auth)
     if await (SFW_GRPS.find_one({"id": gid})) and result[2].pop()=="True":
-        await message.reply_photo(no_pic[random.randint(0, 4)], caption="This anime is marked 18+ and not allowed in this group")
+        await message.reply_photo(no_pic[random.randint(0, 4)], caption="Awas anime 18+ bree")
         return
     await message.reply_photo(title_img, caption=finals_, reply_markup=buttons)
     if title_img not in PIC_LS:
@@ -105,7 +105,7 @@ async def manga_cmd(client: Client, message: Message, mdata: dict):
     if find_gc is not None and 'manga' in find_gc['cmd_list'].split():
         return
     if len(text)==1:
-        k = await message.reply_text("Berikan kueri untuk menelusuri\ncontoh: /manga Naruto")
+        k = await message.reply_text("dibilang kasih Judul kok\ncontoh: /manga Naruto")
         await asyncio.sleep(5)
         return await k.delete()
     query = text[1]
@@ -123,7 +123,7 @@ async def manga_cmd(client: Client, message: Message, mdata: dict):
     buttons = get_btns("MANGA", lsqry=qdb, lspage=1, user=user, result=result, auth=auth)
     if await (SFW_GRPS.find_one({"id": gid})) and result[2].pop()=="True":
         buttons = get_btns("MANGA", lsqry=qdb, lspage=1, user=user, result=result, auth=auth, sfw="True")
-        await message.reply_photo(no_pic[random.randint(0, 4)], caption="This manga is marked 18+ and not allowed in this group", reply_markup=buttons)
+        await message.reply_photo(no_pic[random.randint(0, 4)], caption="Ho ho ho 18+ ini", reply_markup=buttons)
         return
     await message.reply_photo(pic, caption=finals_, reply_markup=buttons)
     if pic not in PIC_LS:
@@ -149,7 +149,7 @@ async def character_cmd(client: Client, message: Message, mdata: dict):
     if find_gc is not None and 'character' in find_gc['cmd_list'].split():
         return
     if len(text)==1:
-        k = await message.reply_text("Berikan kueri untuk menelusuri\ncontoh: /character Nezuko")
+        k = await message.reply_text("Namanya siapa? \ncontoh: /character Nezuko")
         await asyncio.sleep(5)
         return await k.delete()
     query = text[1]
@@ -197,7 +197,7 @@ async def anilist_cmd(client: Client, message: Message, mdata: dict):
     buttons = get_btns("ANIME", lsqry=qdb, lspage=1, result=result, user=user, auth=auth)
     if await (SFW_GRPS.find_one({"id": gid})) and result[2].pop()=="True":
         buttons = get_btns("ANIME", lsqry=qdb, lspage=1, result=result, user=user, auth=auth, sfw="True")
-        await message.reply_photo(no_pic[random.randint(0, 4)], caption="This anime is marked 18+ and not allowed in this group", reply_markup=buttons)
+        await message.reply_photo(no_pic[random.randint(0, 4)], caption="ingat belum dewasa hhhh", reply_markup=buttons)
         return
     await message.reply_photo(pic, caption=msg, reply_markup=buttons)
     if pic not in PIC_LS:
@@ -215,7 +215,7 @@ async def flex_cmd(client: Client, message: Message, mdata: dict):
         if find_gc is not None and 'user' in find_gc['cmd_list'].split():
             return
         if not len(query)==2:
-            k = await message.reply_text("Berikan nama pengguna anilist untuk mencari tentang\ncontoh: /user akuiiki")
+            k = await message.reply_text("Sebut namanya biar gw kasih infonya \ncontoh: /user elnpd")
             await asyncio.sleep(5)
             return await k.delete()
         else:
@@ -225,7 +225,7 @@ async def flex_cmd(client: Client, message: Message, mdata: dict):
     user = mdata['from_user']['id']
     if not "user" in query[0] and not (await AUTH_USERS.find_one({"id": user})):
         return await message.reply_text(
-            "Harap sambungkan akun Anda terlebih dahulu untuk menggunakan cmd ini",
+            "Sambungin dulu bree, kalau mau pakek cmd ini",
             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Auth", url=f"https://t.me/{BOT_NAME.replace('@', '')}/?start=auth")]])
         )
     result = await get_user(qry, query[0], user)
@@ -289,7 +289,7 @@ async def airing_cmd(client: Client, message: Message, mdata: dict):
     btn = get_btns("AIRING", user=user, result=result, auth=auth, lsqry=qdb, lspage=1)
     if await (SFW_GRPS.find_one({"id": gid})) and result[2].pop()=="True":
         btn = get_btns("AIRING", user=user, result=result, auth=auth, lsqry=qdb, lspage=1, sfw="True")
-        await message.reply_photo(no_pic[random.randint(0, 4)], caption="This anime is marked 18+ and not allowed in this group", reply_markup=btn)
+        await message.reply_photo(no_pic[random.randint(0, 4)], caption="Ingat belum dewasa", reply_markup=btn)
         return
     await message.reply_photo(coverImg, caption=out, reply_markup=btn)
     update = True
@@ -333,10 +333,10 @@ async def auth_link_cmd(client, message: Message, mdata: dict):
     if mdata['chat']['id']==user:
         text = "Click the below button to authorize yourself"
         if not os.environ.get('ANILIST_REDIRECT_URL'):
-            text = """Follow the steps to complete Authorization:
-1. Click the below button
-2. Authorize the app and copy the authorization code
-3. Send the code along with cmd /code like '/code <u>auth code from website</u>'"""
+            text = """Ikuti langkah-langkah untuk menyelesaikan Otorisasi:
+1. Klik tombol di bawah ini
+2. Otorisasi aplikasi dan salin kode otorisasi
+3. Kirim kode beserta cmd /code seperti '/code <u>auth code from website</u>'"""
         await message.reply_text(
             text = text,
             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(
