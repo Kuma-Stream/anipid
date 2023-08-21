@@ -435,7 +435,7 @@ async def pong_(client: anibot, message: Message, mdata: dict):
 @control_user
 async def feed_(client: anibot, message: Message, mdata: dict):
     owner = (await client.get_users(OWNER[0])).username
-    await client.send_message(mdata['chat']['id'], f"Silahkan lapor ke @{owner} atau join @otakuindonew")
+    await client.send_message(mdata['chat']['id'], f"Silahkan lapor ke @{owner} atau ke @impidbot")
 
 ###### credits to @NotThatMF on tg since he gave me the code for it ######
 
