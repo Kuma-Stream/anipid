@@ -1009,7 +1009,7 @@ async def featured_in_switch_btn(client: Client, cq: CallbackQuery, cdata: dict)
     await cq.edit_message_media(InputMediaPhoto(pic, caption=msg), reply_markup=InlineKeyboardMarkup(button))
 
 
-BULLETS = ["➤", "•", "⚬", "▲", "▸", "△", "⋟", "»"]
+BULLETS = ["➤", "•", "⚬", "▲", "▸", "△", "⋟", "»", "⪼"]
 @anibot.on_callback_query(filters.regex(pattern=r"cui_(.*)"))
 async def change_ui_btn(client: Client, cq: CallbackQuery):
     cus = cq.from_user.id

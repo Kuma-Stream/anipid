@@ -14,5 +14,5 @@ async def quote(_, message: Message, mdata: dict):
     find_gc = await DC.find_one({'_id': gid})
     if find_gc is not None and 'quote' in find_gc['cmd_list'].split():
         return
-    q = requests.get("https://animechan.vercel.app/api/random").json()
+    q = requests.get("https://katanime.vercel.app/api/getrandom").json()
     await message.reply_text('`'+q['quote']+'`\n\n—  **'+q['character']+'** (From __'+q['anime']+'__)')

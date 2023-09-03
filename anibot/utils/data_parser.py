@@ -18,7 +18,7 @@ async def uidata(id_):
     data = await GUI.find_one({'_id': str(id_)})
     if data is not None:
         return str(data['bl'])+" ", data['cs']
-    return ["⋟ ", "UPPER"]
+    return [" ⪼ ", "UPPER"]
 
 async def get_ui_text(case):
     if case=="UPPER":
@@ -37,6 +37,7 @@ ANIME_TEMPLATE = """{name}
 {status_air}{gnrs_}{tags_}
 ──────────────────
 ▷ **{trailer_link}** | ⌭ <a href="https://t.me/{bot}?start=anirec_{idm}">**Anime Serupa**</a>
+⍯ <a href="{surl}">**Sinopsis**</a>
 ─────── ∘°❉°∘ ───────
 {additional}"""
 
