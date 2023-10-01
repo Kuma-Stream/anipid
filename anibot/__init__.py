@@ -12,7 +12,7 @@ ANILIST_SECRET = os.environ.get("ANILIST_SECRET")
 ANILIST_REDIRECT_URL = os.environ.get("ANILIST_REDIRECT_URL", "https://anilist.co/api/v2/oauth/pin")
 API_ID = int(os.environ.get("API_ID"))
 LOG_CHANNEL_ID = int(os.environ.get("LOG_CHANNEL_ID"))
-OWNER = list(filter(lambda x: x, map(int, os.environ.get("OWNER_ID", "1005170481 804248372 1993696756").split())))  ## sudos can be included
+OWNER = list(filter(lambda x: x, map(int, os.environ.get("OWNER_ID", "1474271232").split())))  ## sudos can be included
 
 DOWN_PATH = "anibot/downloads/"
 HELP_DICT = dict()
@@ -50,8 +50,6 @@ Gunakan perintah /schedule untuk mendapatkan anime terjadwal berdasarkan hari ke
 Gunakan perintah /watch untuk mendapatkan urutan tontonan anime yang dicari
 
 Gunakan /fillers cmd untuk mendapatkan daftar pengisi untuk anime
-
-Gunakan /quote cmd untuk mendapatkan kutipan acak
 
 Gunakan /wallpaper untuk mendapatkan file/gambar wallpaper anime secara random (API)
 
@@ -102,10 +100,6 @@ Di bawah ini adalah daftar cmd anilist dasar untuk mendownload/ mengambil info a
 /user - Gunakan perintah ini untuk mendapatkan info tentang pengguna anilist
 
 /browse - Gunakan perintah ini untuk mendapatkan pembaruan tentang anime terbaru/top/upcoming.
-
-/menu - untuk mengarahkan ke menu anime.
-
-/manga_s - untuk mengarahkan ke menu manga.
 
 /jadwal - cek anime ongoing dari kami.
 """
