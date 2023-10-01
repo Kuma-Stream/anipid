@@ -36,10 +36,6 @@ USERS = get_collection("USERS")
 GROUPS = get_collection("GROUPS")
 SFW_GROUPS = get_collection("SFW_GROUPS")
 DC = get_collection('DISABLED_CMDS')
-AG = get_collection('AIRING_GROUPS')
-CR_GRPS = get_collection('CRUNCHY_GROUPS')
-HD_GRPS = get_collection('HEADLINES_GROUPS')
-SP_GRPS = get_collection('SUBSPLEASE_GROUPS')
 CMD = [
     'anime',
     'anilist',
