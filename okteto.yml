@@ -1,18 +1,8 @@
-name:  Chise
+name: Chise
 services:
-  Chise:
-    context: .
-    dockerfile: Dockerfile.Chise
+  anibot:
+    build: .
+    command: python3 -m anibot
     env_file: .env.ani
-
-  CL:
-    build:  
-      context: .
-      dockerfile: Dockerfile.CL
-    env_file:  .env.aeon
-
-  Sina:
-    build:  
-      context: .
-      dockerfile: Dockerfile.Sina
-    env_file:  .env.ae
+    ports:
+       - 8443:8443
