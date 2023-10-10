@@ -1,10 +1,5 @@
-name:  Chise
+name:  Sina
 services:
-  Chise:
-    context: .
-    dockerfile: Dockerfile.Chise
-    env_file: .env.ani
-
   CL:
     build:  
       context: .
