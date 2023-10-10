@@ -100,8 +100,6 @@ Di bawah ini adalah daftar cmd anilist dasar untuk mendownload/ mengambil info a
 /user - Gunakan perintah ini untuk mendapatkan info tentang pengguna anilist
 
 /browse - Gunakan perintah ini untuk mendapatkan pembaruan tentang anime terbaru/top/upcoming.
-
-/jadwal - cek anime ongoing dari kami.
 """
 
 HELP_DICT["Oauth"] = """

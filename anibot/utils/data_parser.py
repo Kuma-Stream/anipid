@@ -1444,7 +1444,7 @@ async def get_scheduled(day_id: int = 0):
 		return f"No more data"
 	msg = f"**Schedule for {datetime.fromtimestamp(that_day).strftime('%A')}**\n`{datetime.fromtimestamp(that_day).strftime('%d %B, %Y')}`\n\n"
 	for anime_data in schedule_data:
-		if anime_data.get("media", {}).get("countryOfOrigin") != "JP":
+		if anime_data.get("media", {}).get("countryOfOrigin") != "ID":
 			continue
 		if today.timestamp() > anime_data['airingAt']:
 			msg += "✅ "
