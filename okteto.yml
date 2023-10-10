@@ -2,7 +2,7 @@ name:  Chise
 services:
   Chise:
     build: .
-    command: honcho start -f Procfile
+    dockerfile: Dockerfile.Chise
     env_file: .env.ani
 
   CL:
