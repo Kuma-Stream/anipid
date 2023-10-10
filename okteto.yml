@@ -2,7 +2,7 @@ name:  Chise
 services:
   Chise:
     build: .
-    command: python3 -m anibot
+    command: honcho start -f Procfile
     env_file: .env.ani
 
   CL:
