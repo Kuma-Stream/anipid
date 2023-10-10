@@ -1,7 +1,7 @@
 name:  Chise
 services:
   Chise:
-    build: .
+    context: .
     dockerfile: Dockerfile.Chise
     env_file: .env.ani
 
