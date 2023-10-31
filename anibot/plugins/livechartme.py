@@ -390,13 +390,13 @@ f"""**New anime released on Crunchyroll**
                         x = await anibot.send_photo(
                             id_['_id'],
                             i[0],
-                            caption=i[1]+'\n\n<a href="i[2]">LiveChart</a> | <a href="i[3]">Source</a>
+                            caption=i[1]+'\n\n<a href="i[2]">LiveChart</a> | <a href="i[3]">Source</a>'
                         )
                     except (WebpageMediaEmpty, WebpageCurlFailed):
                         x = await anibot.send_photo(
                             id_['_id'],
                             failed_pic,
-                            caption=i[1]+'\n\n<a href="i[2]">LiveChart</a> | <a href="i[3]">Source</a>
+                            caption=i[1]+'\n\n<a href="i[2]">LiveChart</a> | <a href="i[3]">Source</a>'
                         )
                         await clog("ANIBOT", i[0], "HEADLINES LINK")
                     for var in list_keys:
