@@ -75,7 +75,7 @@ async def get_ui_text(case):
 ANIME_TEMPLATE = """{name}
 ─────── ∘°❉°∘ ───────
 **ID | MAL ID:** `{idm}` | <a href="https://myanimelist.net/anime/{idmal}">{idmal}</a>
-{bl}**{psrc}:** [{c_flag}] - `{source}`
+{bl}**{psrc}:** `{source}`
 {bl}**{ptype}:** `{formats}`{avscd}{dura}{user_data}
 {status_air}{gnrs_}{tags_}
 ──────────────────
@@ -1255,28 +1255,27 @@ async def get_anime(
                 f"\n{bl}**{text[4]}:** `{in_ls_stts}{fav}{in_ls_score}`"
             )
     if data["title"]["english"] is not None:
-        name = f"""[{c_flag}]**{romaji}**
-        __{english}__
-        {native}"""
+        name = f"""{c_flag} `{romaji}`
+⌯ __{native}__ - (**{english}**)"""
     else:
-        name = f"""[{c_flag}]**{romaji}**
-        {native}"""
+        name = f"""{c_flag} `{romaji}`
+⌯ {native}"""
     prql, prql_id, sql, sql_id = "", "None", "", "None"
     for i in prqlsql:
-        if i["relationType"] == "PREQUEL" and i["node"]["type"]=="ANIME":
+        if i["relationType"] == "⌭ PREQUEL" and i["node"]["type"]=="ANIME":
             pname = (
-                i["node"]["title"]["english"]
-                if i["node"]["title"]["english"] is not None
+                i["node"]["title"]["romaji"]
+                if i["node"]["title"]["romaji"] is not None
                 else i["node"]["title"]["romaji"]
             )
             prql += f"**{text[10]}:** `{pname}`\n"
             prql_id = i["node"]["id"]
             break
     for i in prqlsql:
-        if i["relationType"] == "SEQUEL" and i["node"]["type"]=="ANIME":
+        if i["relationType"] == "⌭ SEQUEL" and i["node"]["type"]=="ANIME":
             sname = (
-                i["node"]["title"]["english"]
-                if i["node"]["title"]["english"] is not None
+                i["node"]["title"]["romaji"]
+                if i["node"]["title"]["romaji"] is not None
                 else i["node"]["title"]["romaji"]
             )
             sql += f"**{text[9]}:** `{sname}`\n"
@@ -1381,24 +1380,26 @@ async def get_anilist(
                 f"\n{bl}**{text[4]}:** `{in_ls_stts}{fav}{in_ls_score}`"
             )
     if data["title"]["english"] is not None:
-        name = f"[{c_flag}]**{english}** (`{native}`)"
+        name = f"""{c_flag} `{romaji}`
+⌯ __{native}__ - (**{english}**)"""
     else:
-        name = f"[{c_flag}]**{romaji}** (`{native}`)"
+        name = f"""{c_flag} `{romaji}`
+⌯ {native}"""
     prql, sql = "", ""
     for i in prqlsql:
-        if i["relationType"] == "PREQUEL" and i["node"]["type"]=="ANIME":
+        if i["relationType"] == "⌭ PREQUEL" and i["node"]["type"]=="ANIME":
             pname = (
-                i["node"]["title"]["english"]
-                if i["node"]["title"]["english"] is not None
+                i["node"]["title"]["romaji"]
+                if i["node"]["title"]["romaji"] is not None
                 else i["node"]["title"]["romaji"]
             )
             prql += f"**{text[10]}:** `{pname}`\n"
             break
     for i in prqlsql:
-        if i["relationType"] == "SEQUEL" and i["node"]["type"]=="ANIME":
+        if i["relationType"] == "⌭ SEQUEL" and i["node"]["type"]=="ANIME":
             sname = (
-                i["node"]["title"]["english"]
-                if i["node"]["title"]["english"] is not None
+                i["node"]["title"]["romaji"]
+                if i["node"]["title"]["romaji"] is not None
                 else i["node"]["title"]["romaji"]
             )
             sql += f"**{text[9]}:** `{sname}`\n"

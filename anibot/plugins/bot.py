@@ -440,10 +440,10 @@ ID: `{user}`""",
             gid,
             text=(
                 f"Kon'nichiwa!!!\n"
-                +f"I'm {bot.first_name} bot and I can help you get info on "
+                +f"I'm {bot.first_name} and I can help you get info on "
                 +f"Animes, Mangas, Characters, Airings, Schedules, Watch "
                 +f"Orders of Animes, etc."
-                +f"\n\nFor more info send /help in here."
+                +f"\n\nFor more info send /help or /th (hanya authorize user)"
                 +f"If you wish to use me in a group start me by "
                 +f"/start{BOT_NAME} command after adding me in the group.")
         )
@@ -576,7 +576,7 @@ async def connect_(client: Client, message: Message, mdata: dict):
                     text=(
                         "Channel already connected"
                         +"\nIf someone else has access to it who doesn't own "
-                        +"the channel, contact @hanabi_support"
+                        +"the channel, contact @gabutpid"
                     )
                 )
                 return
@@ -729,7 +729,7 @@ async def feed_(client: Client, message: Message, mdata: dict):
     await client.send_message(
         mdata['chat']['id'],
         f"For issues or queries please contact "
-        +f"@{owner} or join @hanabi_support"
+        +f"@impidbot or join @gabutpid"
     )
 
 ###### credits to @NotThatMF on tg since he gave me the code for it ######

@@ -84,7 +84,7 @@ def control_user(func):
                                 "You have been exempted from using this bot "
                                 +"now due to spamming 5 times consecutively!!!"
                                 +"\nTo remove restriction plead to "
-                                +"@hanabi_support"
+                                +"@gabutpid"
                             )
                         )
                         await clog('ANIBOT', f'UserID: {user}', 'BAN')
