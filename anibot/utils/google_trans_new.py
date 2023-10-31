@@ -191,7 +191,7 @@ log.addHandler(logging.NullHandler())
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 URLS_SUFFIX = [re.search('translate.google.(.*)', url.strip()).group(1) for url in DEFAULT_SERVICE_URLS]
-URL_SUFFIX_DEFAULT = 'com'
+URL_SUFFIX_DEFAULT = 'cn'
 
 
 class google_new_transError(Exception):
@@ -258,7 +258,7 @@ class google_translator:
     :type proxies: class : dict; like: {'http': 'http:171.112.169.47:19934/', 'https': 'https:171.112.169.47:19934/'}
     '''
 
-    def __init__(self, url_suffix="com", timeout=5, proxies=None):
+    def __init__(self, url_suffix="cn", timeout=5, proxies=None):
         self.proxies = proxies
         if url_suffix not in URLS_SUFFIX:
             self.url_suffix = URL_SUFFIX_DEFAULT
@@ -282,11 +282,11 @@ class google_translator:
     def translate(self, text, lang_tgt='auto', lang_src='auto', pronounce=False):
         try:
             lang = LANGUAGES[lang_src]
-        except:
+        except Exception:
             lang_src = 'auto'
         try:
             lang = LANGUAGES[lang_tgt]
-        except:
+        except Exception:
             lang_src = 'auto'
         text = str(text)
         if len(text) >= 5000:
@@ -308,7 +308,7 @@ class google_translator:
                                     headers=headers,
                                     )
         try:
-            if self.proxies  is None or type(self.proxies) != dict:
+            if self.proxies is None or type(self.proxies) != dict:
                 self.proxies = {}
             with requests.Session() as s:
                 s.proxies = self.proxies
@@ -319,7 +319,7 @@ class google_translator:
                 decoded_line = line.decode('utf-8')
                 if "MkEWBc" in decoded_line:
                     try:
-                        response = decoded_line
+                        response = (decoded_line)
                         response = json.loads(response)
                         response = list(response)
                         response = json.loads(response[0][2])
@@ -330,7 +330,7 @@ class google_translator:
                                 sentences = response[0][5]
                             else: ## only url
                                 sentences = response[0][0]
-                                if pronounce  is False:
+                                if pronounce is False:
                                     return sentences
                                 elif pronounce == True:
                                     return [sentences,None,None]
@@ -339,7 +339,7 @@ class google_translator:
                                 sentence = sentence[0]
                                 translate_text += sentence.strip() + ' '
                             translate_text = translate_text
-                            if pronounce  is False:
+                            if pronounce is False:
                                 return translate_text
                             elif pronounce == True:
                                 pronounce_src = (response_[0][0])
@@ -349,7 +349,7 @@ class google_translator:
                             sentences = []
                             for i in response:
                                 sentences.append(i[0])
-                            if pronounce  is False:
+                            if pronounce is False:
                                 return sentences
                             elif pronounce == True:
                                 pronounce_src = (response_[0][0])
@@ -387,7 +387,7 @@ class google_translator:
                                     data=freq,
                                     headers=headers)
         try:
-            if self.proxies  is None or type(self.proxies) != dict:
+            if self.proxies is None or type(self.proxies) != dict:
                 self.proxies = {}
             with requests.Session() as s:
                 s.proxies = self.proxies

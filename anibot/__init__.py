@@ -29,120 +29,71 @@ if os.environ.get('USER_SESSION'):
 HELP_DICT['Group'] = '''
 Group based commands:
 
-/settings - Beralih hal-hal seperti apakah akan mengizinkan 18+ hal dalam grup atau apakah akan memberi tahu tentang anime yang ditayangkan, dll dan mengubah UI
+/settings - Toggle stuff like whether to allow 18+ stuff in group or whether to notify about aired animes, etc and change UI
 
-/disable - Nonaktifkan penggunaan cmd dalam grup (Nonaktifkan beberapa cmd dengan menambahkan spasi di antara mereka)
+/disable - Disable use of a cmd in the group (Disable multiple cmds by adding space between them)
 `/disable anime anilist me user`
 
-/enable - Aktifkan penggunaan cmd dalam grup (Aktifkan beberapa cmd dengan menambahkan spasi di antara mereka).
+/enable - Enable use of a cmd in the group (Enable multiple cmds by adding space between them)
 `/enable anime anilist me user`
 
 /disabled - List out disabled cmds
 '''
 
-HELP_DICT["Additional"] = """Gunakan /reverse untuk mencari anime melalui tracemoepy API, yang dimana bot ini akan memberikan judul/info terkait anime tersebut.
+HELP_DICT["Additional"] = """Use /reverse cmd to get reverse search via tracemoepy API
+__Note: This works best on uncropped anime pic,
+when used on cropped media, you may get result but it might not be too reliable__
 
-Catatan: Ini berfungsi paling baik pada gambar anime yang tidak dipotong,
-ketika digunakan pada media yang kepotong, Anda mungkin mendapatkan hasil tetapi mungkin tidak akurat.
+Use /schedule cmd to get scheduled animes based on weekdays
 
-Gunakan perintah /schedule untuk mendapatkan anime terjadwal berdasarkan hari kerja
+Use /watch cmd to get watch order of searched anime
 
-Gunakan perintah /watch untuk mendapatkan urutan tontonan anime yang dicari
+Use /fillers cmd to get a list of fillers for an anime
 
-Gunakan /fillers cmd untuk mendapatkan daftar pengisi untuk anime
-
-Gunakan /quote cmd untuk mendapatkan kutipan acak
-
-Gunakan /wallpaper untuk mendapatkan file/gambar wallpaper anime secara random (API)
-
-Gunakan /waifu untuk mendapatkan gambar waifu (neko) secara random (API)
-
-<b>Mendownload VIDEO/AUDIO dari Youtube.</b>
-
-Silahkan aktifkan bot @vid nya terlebih dahulu, lalu kembali kebot ini.
-
-Setelah itu, kalian ketik @vid "judul/nama"  yang ingin
-
-kalian download/streaming. 
-
-lalu, klik video tersebut, nanti otomatis bot ini akan memprosesnya.
-
-<b> Stream/Download via browser </b>
-
-Saya sarankan gunakan bot ini @Kurupidbot
-
-fungsinya itu, untuk menconvert, file dokumen/video dari telegram,
-ke link yang bisa kalian download mengunakan browser maupun sejenisnya.
-tidak hanya itu, selain mendownload, kalian bisa streaming via link.
-
-....
+Use /quote cmd to get a random quote
 """
 
 HELP_DICT["Anilist"] = """
-Ini merupakan menu bantuan anilist, terkait penggunaan bot ini,
+Below is the list of basic anilist cmds for info on anime, character, manga, etc.
 
-Di bawah ini adalah daftar cmd anilist dasar untuk mendownload/ mengambil info anime, karakter, manga, dll.
+/anime - Use this cmd to get info on specific anime using keywords (anime name) or Anilist ID
+(Can lookup info on sequels and prequels)
 
-/anime - Gunakan cmd ini untuk mendapatkan info & mendownload anime tertentu menggunakan kata kunci (nama anime) atau ID Anilist
-(Dapat mencari info tentang sekuel dan prekuel)
+/anilist - Use this cmd to choose between multiple animes with similar names related to searched query
+(Doesn't includes buttons for prequel and sequel)
 
-/anilist - Gunakan perintah ini untuk memilih di antara beberapa anime dengan nama serupa yang terkait dengan kueri yang dicari
-(Tidak termasuk tombol untuk prekuel dan sekuel)
+/character - Use this cmd to get info on character
 
-/character - Gunakan perintah ini untuk mendapatkan info tentang karakter
+/manga - Use this cmd to get info on manga
 
-/manga - Gunakan perintah ini untuk mendapatkan info tentang manga
+/airing - Use this cmd to get info on airing status of anime
 
-/airing - Gunakan perintah ini untuk mendapatkan info status penayangan anime
+/top - Use this cmd to lookup top animes of a genre/tag or from all animes
+(To get a list of available tags or genres send /gettags or /getgenres
+'/gettags nsfw' for nsfw tags)
 
-/top - Gunakan cmd ini untuk mencari anime teratas dari genre/tag atau dari semua anime
-(Untuk mendapatkan daftar tag atau genre yang tersedia, kirim /gettags atau /getgenres
-'/gettags nsfw' untuk tag nsfw)
+/user - Use this cmd to get info on an anilist user
 
-/user - Gunakan perintah ini untuk mendapatkan info tentang pengguna anilist
-
-/browse - Gunakan perintah ini untuk mendapatkan pembaruan tentang anime terbaru/top/upcoming.
-
-/menu - untuk mengarahkan ke menu anime.
-
-/manga_s - untuk mengarahkan ke menu manga.
-
-/jadwal - cek anime ongoing dari kami.
+/browse - Use this cmd to get updates about latest animes
 """
 
 HELP_DICT["Oauth"] = """
-Ini merupakan menu bantuan tambahan serta fitur canggih, terkait penggunaan bot ini,
+This includes advanced anilist features
 
-Gunakan /auth atau !auth untuk login/daftar akun Anilist Anda dengan bot.
+Use /auth or !auth cmd to get details on how to authorize your Anilist account with bot
+Authorising yourself unlocks advanced features of bot like:
+- adding anime/character/manga to favourites
+- viewing your anilist data related to anime/manga in your searches which includes score, status, and favourites
+- unlock /flex, /me, /activity and /favourites commands
+- adding/updating anilist entry like completed or plan to watch/read
+- deleting anilist entry
 
-Otorisasi diri Anda membuka fitur-fitur canggih bot seperti:
+Use /flex or !flex cmd to get your anilist stats
 
-- menambahkan anime/karakter/manga ke favorit
-- melihat data anilist Anda yang terkait dengan anime/manga dalam pencarian Anda yang mencakup skor, status, dan favorit
-- buka /flex, /me, /activity and /favourites 
-- menambahkan/memperbarui entri anilis seperti selesai atau berencana untuk menonton/membaca
-- menghapus entri anilis
+Use /logout or !logout cmd to disconnect your Anilist account
 
-Gunakan /flex or !flex cmd untuk mendapatkan statistik anilist Anda
+Use /me or !me cmd to get your anilist recent activity
+Can also use /activity or !activity
 
-Gunakan /logout or !logout cmd untuk memutuskan akun Anilist Anda
-
-Gunakan /me atau !me cmd untuk mendapatkan aktivitas terbaru anilist Anda
-bisa juga /activity or !activity
-
-Gunakan /favourites cmd untuk mendapatkan favorit anilis Anda.
-
-Mengganti foto/sampul anda 
-
-Silahkan kunjungi https://anilist.co/settings, lalu pilih foto dan terapkan.
-
-Bagaimana masalah terhadap, riwayat, atau list
-yang belum muncul ? 
-
-Normalnya kalian harus menunggu 1 hari saat kalian list,
-agar tampil di menu /flex, /me dan lainnya.
-
-Solusinya yang ingin menambahkan dengan manual/cepat, silahkan klik ini : https://anilist.co/settings/lists 
-
-Cari text "Stats", klik tombol Update stats.
+Use /favourites or !favourites cmd to get your anilist favourites
 """

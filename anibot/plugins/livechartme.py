@@ -6,7 +6,6 @@ from traceback import format_exc as err
 from bs4 import BeautifulSoup as bs
 from collections import defaultdict
 from datetime import datetime as dt
-from .google_trans_new import google_translator
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from pyrogram.errors import WebpageCurlFailed, WebpageMediaEmpty, ChatAdminRequired
@@ -14,7 +13,6 @@ from .. import anibot
 from ..utils.db import get_collection
 from ..utils.helper import clog
 
-tr = google_translator()
 failed_pic = "https://telegra.ph/file/09733b49f3a9d5b147d21.png"
 
 url_a = "https://www.livechart.me/feeds/episodes"
@@ -32,7 +30,7 @@ AR_GRPS = get_collection('AIRING_GROUPS')
 CR_GRPS = get_collection('CRUNCHY_GROUPS')
 SP_GRPS = get_collection('SUBSPLEASE_GROUPS')
 HD_GRPS = get_collection('HEADLINES_GROUPS')
-MAL_HD_GRPS = get_collection('HEADLINES_GROUPS')
+MAL_HD_GRPS = get_collection('MAL_HEADLINES_GROUPS')
 
 admin_error_msg = "Please give bot Pin Message and Delete Message permissions to pin new headlines!!!\nOr you can disable Pin and Unpin options in /settings command to stop seeing this message"
 
@@ -385,18 +383,24 @@ f"""**New anime released on Crunchyroll**
         for i in msgslch:
             async for id_ in HD_GRPS.find():
                 var_dict = {}
+                btn = InlineKeyboardMarkup([[
+                    InlineKeyboardButton("More Info", url=i[2]),
+                    InlineKeyboardButton("Source", url=i[3]),
+                ]])
                 try:
                     try:
                         x = await anibot.send_photo(
                             id_['_id'],
                             i[0],
-                            caption=i[1]+'\n\n<a href="i[2]">LiveChart</a> | <a href="i[3]">Source</a>'
+                            caption=i[1]+'\n\n#LiveChart',
+                            reply_markup=btn
                         )
                     except (WebpageMediaEmpty, WebpageCurlFailed):
                         x = await anibot.send_photo(
                             id_['_id'],
                             failed_pic,
-                            caption=i[1]+'\n\n<a href="i[2]">LiveChart</a> | <a href="i[3]">Source</a>'
+                            caption=i[1]+'\n\n#LiveChart',
+                            reply_markup=btn
                         )
                         await clog("ANIBOT", i[0], "HEADLINES LINK")
                     for var in list_keys:
@@ -425,20 +429,23 @@ f"""**New anime released on Crunchyroll**
         for i in msgsmh:
             async for id_ in MAL_HD_GRPS.find():
                 var_dict = {}
+                btn = InlineKeyboardMarkup([[
+                    InlineKeyboardButton("More Info", url=i[2]),
+                ]])
                 try:
                     try:
                         x = await anibot.send_photo(
                             id_['_id'],
                             i[0],
-                            if os.environ.get("PREFERRED_LANGUAGE"):
-                                caption = tr.translate(i[1], lang_tgt=os.environ.get("PREFERRED_LANGUAGE"))+'\n\n<a href="i[2]">MyAnimeList</a>'
+                            caption=i[1]+'\n\n#MyAnimeList',
+                            reply_markup=btn
                         )
                     except (WebpageMediaEmpty, WebpageCurlFailed):
                         x = await anibot.send_photo(
                             id_['_id'],
                             failed_pic,
-                            if os.environ.get("PREFERRED_LANGUAGE"):
-                                caption = tr.translate(i[1], lang_tgt=os.environ.get("PREFERRED_LANGUAGE"))+'\n\n<a href="i[2]">MyAnimeList</a>'
+                            caption=i[1]+'\n\n#MyAnimeList',
+                            reply_markup=btn
                         )
                         await clog("ANIBOT", i[0], "HEADLINES LINK")
                     for var in list_keys:

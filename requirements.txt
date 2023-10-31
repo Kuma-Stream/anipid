@@ -1,4 +1,4 @@
-Pyrogram
+pyrogram
 tgcrypto
 requests
 aiofiles>=0.6.0
@@ -8,7 +8,6 @@ lottie
 bs4
 motor
 dnspython
-jikanpy
 natsort
 apscheduler
 lxml
