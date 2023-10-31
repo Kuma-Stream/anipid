@@ -1262,23 +1262,23 @@ async def get_anime(
 ⌯ {native}"""
     prql, prql_id, sql, sql_id = "", "None", "", "None"
     for i in prqlsql:
-        if i["relationType"] == "⌭ PREQUEL" and i["node"]["type"]=="ANIME":
+        if i["relationType"] == "PREQUEL" and i["node"]["type"]=="ANIME":
             pname = (
                 i["node"]["title"]["romaji"]
                 if i["node"]["title"]["romaji"] is not None
                 else i["node"]["title"]["romaji"]
             )
-            prql += f"**{text[10]}:** `{pname}`\n"
+            prql += f"⌭ **{text[10]}:** `{pname}`\n"
             prql_id = i["node"]["id"]
             break
     for i in prqlsql:
-        if i["relationType"] == "⌭ SEQUEL" and i["node"]["type"]=="ANIME":
+        if i["relationType"] == "SEQUEL" and i["node"]["type"]=="ANIME":
             sname = (
                 i["node"]["title"]["romaji"]
                 if i["node"]["title"]["romaji"] is not None
                 else i["node"]["title"]["romaji"]
             )
-            sql += f"**{text[9]}:** `{sname}`\n"
+            sql += f"⌭ **{text[9]}:** `{sname}`\n"
             sql_id = i["node"]["id"]
             break
     additional = f"{prql}{sql}"
@@ -1387,22 +1387,22 @@ async def get_anilist(
 ⌯ {native}"""
     prql, sql = "", ""
     for i in prqlsql:
-        if i["relationType"] == "⌭ PREQUEL" and i["node"]["type"]=="ANIME":
+        if i["relationType"] == "PREQUEL" and i["node"]["type"]=="ANIME":
             pname = (
                 i["node"]["title"]["romaji"]
                 if i["node"]["title"]["romaji"] is not None
                 else i["node"]["title"]["romaji"]
             )
-            prql += f"**{text[10]}:** `{pname}`\n"
+            prql += f"⌭ **{text[10]}:** `{pname}`\n"
             break
     for i in prqlsql:
-        if i["relationType"] == "⌭ SEQUEL" and i["node"]["type"]=="ANIME":
+        if i["relationType"] == "SEQUEL" and i["node"]["type"]=="ANIME":
             sname = (
                 i["node"]["title"]["romaji"]
                 if i["node"]["title"]["romaji"] is not None
                 else i["node"]["title"]["romaji"]
             )
-            sql += f"**{text[9]}:** `{sname}`\n"
+            sql += f"**⌭ {text[9]}:** `{sname}`\n"
             break
     additional = f"{prql}{sql}"
     additional.replace("-", "")

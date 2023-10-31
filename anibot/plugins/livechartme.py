@@ -9,10 +9,12 @@ from datetime import datetime as dt
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from pyrogram.errors import WebpageCurlFailed, WebpageMediaEmpty, ChatAdminRequired
+from .google_trans_new import google_translator
 from .. import anibot
 from ..utils.db import get_collection
 from ..utils.helper import clog
 
+tr = google_translator()
 failed_pic = "https://telegra.ph/file/09733b49f3a9d5b147d21.png"
 
 url_a = "https://www.livechart.me/feeds/episodes"
@@ -389,6 +391,9 @@ f"""**New anime released on Crunchyroll**
                             id_['_id'],
                             i[0],
                             caption=i[1]+'\n\n#News'
+                            if os.environ.get("PREFERRED_LANGUAGE"):
+                                caption = tr.translate(
+                                    caption, lang_tgt=os.environ.get("PREFERRED_LANGUAGE")
                         )
                     except (WebpageMediaEmpty, WebpageCurlFailed):
                         x = await anibot.send_photo(
@@ -429,12 +434,19 @@ f"""**New anime released on Crunchyroll**
                             id_['_id'],
                             i[0],
                             caption=i[1]+'\n\n#News'
+                            if os.environ.get("PREFERRED_LANGUAGE"):
+                                caption = tr.translate(
+                                    caption, lang_tgt=os.environ.get("PREFERRED_LANGUAGE")
                         )
                     except (WebpageMediaEmpty, WebpageCurlFailed):
                         x = await anibot.send_photo(
                             id_['_id'],
                             failed_pic,
                             caption=i[1]+'\n\n#News'
+                            if os.environ.get("PREFERRED_LANGUAGE"):
+                                caption = tr.translate(
+                                    caption, lang_tgt=os.environ.get("PREFERRED_LANGUAGE")
+            )
                         )
                         await clog("ANIBOT", i[0], "HEADLINES LINK")
                     for var in list_keys:
