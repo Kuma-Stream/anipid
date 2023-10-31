@@ -383,24 +383,18 @@ f"""**New anime released on Crunchyroll**
         for i in msgslch:
             async for id_ in HD_GRPS.find():
                 var_dict = {}
-                btn = InlineKeyboardMarkup([[
-                    InlineKeyboardButton("More Info", url=i[2]),
-                    InlineKeyboardButton("Source", url=i[3]),
-                ]])
                 try:
                     try:
                         x = await anibot.send_photo(
                             id_['_id'],
                             i[0],
-                            caption=i[1]+'\n\n#LiveChart',
-                            reply_markup=btn
+                            caption=i[1]+'\n\n#News'
                         )
                     except (WebpageMediaEmpty, WebpageCurlFailed):
                         x = await anibot.send_photo(
                             id_['_id'],
                             failed_pic,
-                            caption=i[1]+'\n\n#LiveChart',
-                            reply_markup=btn
+                            caption=i[1]+'\n\n#News'
                         )
                         await clog("ANIBOT", i[0], "HEADLINES LINK")
                     for var in list_keys:
@@ -429,23 +423,18 @@ f"""**New anime released on Crunchyroll**
         for i in msgsmh:
             async for id_ in MAL_HD_GRPS.find():
                 var_dict = {}
-                btn = InlineKeyboardMarkup([[
-                    InlineKeyboardButton("More Info", url=i[2]),
-                ]])
                 try:
                     try:
                         x = await anibot.send_photo(
                             id_['_id'],
                             i[0],
-                            caption=i[1]+'\n\n#MyAnimeList',
-                            reply_markup=btn
+                            caption=i[1]+'\n\n#News'
                         )
                     except (WebpageMediaEmpty, WebpageCurlFailed):
                         x = await anibot.send_photo(
                             id_['_id'],
                             failed_pic,
-                            caption=i[1]+'\n\n#MyAnimeList',
-                            reply_markup=btn
+                            caption=i[1]+'\n\n#News'
                         )
                         await clog("ANIBOT", i[0], "HEADLINES LINK")
                     for var in list_keys:

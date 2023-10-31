@@ -393,7 +393,7 @@ DES_INFO_QUERY = """
 query ($id: Int) {
     Media (id: $id) {
         id
-        description (asHtml: false)
+        description (asHtml: true)
     }
 }
 """
@@ -580,7 +580,7 @@ query ($id: Int) {
         image {
             large
         }
-        description(asHtml: false)
+        description(asHtml: true)
     }
 }
 """
